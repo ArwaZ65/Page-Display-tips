@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tip Generator</title>
+</head>
+<body>
+    <header></header>
+    <article>
+    <button id="displayTips">Display Tips</button>
+    <button id="startInterval">Start Interval</button><br>
+    <button class="btn3"><a href="task.html">here to Move to another task</a> </button>
+    <br><div id="tipContainer"></div>
+
+    <script>
+        const tips = [
+            "Stay health",
+            "Eat healthy food",
+            "Drink water",
+            "Do exercise",
+            "Study hard",
+            "Make to do list",
+            "Set goals",
+            "sleep early",
+            "Take breaks",
+            "Quality time",
+            "Be positive"
+    ];
+        function* generatetips(){
+            let index=0;
+            while(true){
+                yield tips[index % tips.length];
+                index++;                
+            }
+        }
+        const generate=generatetips();
+        document.getElementById('displayTips').addEventListener('click',()=>{
+            for(let tip of tips){
+                console.log(tip)
+            }
+        });
+        document.getElementById('startInterval').addEventListener('click',() => {
+            setInterval(() => {
+                document.getElementById('tipContainer').innerText=generate.next().value;
+            },3000);
+            });
+
+    </script>
+    </article>
+    <footer><p>Designed by Arwa Zakria</p></footer>
+</body>
+</html>
